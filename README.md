@@ -25,3 +25,33 @@ tabBdrops <- c("colB1", "colB2")
 tabA3 <- tabA2[,!(names(tabA2) %in% tabAdrops)]
 tabB3 <- tabB2[,!(names(tabB2) %in% tabBdrops)]
 ```
+
+### Full join both tables on column "colA4"
+```R
+tabBdane <- merge(x = tabA3, y = tabB3, by = "colA4", all = TRUE)
+```
+
+### Write output table as a csv with ";" as a separator. Use quote = FALSE to get rid of "" around each string.
+```R
+write.csv2(tabBdane,<path_to_output_csv_file>,quote = FALSE,row.names = FALSE)
+```
+
+### Translate accented characters by chartr or by gsub function
+```R
+mydata <- c("ą","ę")
+chartr("ąęć","aec",mydata)
+mydata2 <- chartr("ąćęłńóśźżĄĆĘŁŃÓŚŹŻ","acelnoszzACELNOSZZ",mydata)
+mydata3 <- gsub("ą","a",mydata3)
+sapply(mydata,gsub,pattern="ą",replacement="a")
+```
+
+### Convert accented characters/diacritic signs to ASCII signs using stri_trans_general from stringi library
+```R
+library(stringi)
+tabBdane2 <- as.data.frame(lapply(tabBdane, function(x) stri_trans_general(x,"latin-ascii")))
+```
+
+### Save converted data to a csv file
+```R
+write.csv2(tabBdane2,<path_to_output_csv_file>,quote = FALSE,row.names = FALSE)
+```
