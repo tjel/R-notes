@@ -1,8 +1,10 @@
 # R-notes
 
 ## Read csv file with ";" as a separator
+```R
 tabA <- read.csv(file=<path_to_file_A>,head=TRUE,sep=";")
 tabB <- read.csv(file=<path_to_file_B>,head=TRUE,sep=";")
+```
 
 In Windows the path syntax is: <path_to_file_A>="C:\\path\\to\\file\\A.
 
