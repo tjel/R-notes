@@ -2,8 +2,8 @@
 
 ### Read csv file with ";" as a separator
 ```R
-tabA <- read.csv(file=<path_to_file_A>,head=TRUE,sep=";")
-tabB <- read.csv(file=<path_to_file_B>,head=TRUE,sep=";")
+tabA <- read.csv(file=<path_to_file_A>, head=TRUE, sep=";")
+tabB <- read.csv(file=<path_to_file_B>, head=TRUE, sep=";")
 ```
 
 In Windows the path syntax is: `<path_to_file_A>="C:\\path\\to\\file\\A.csv.`
@@ -16,14 +16,14 @@ tabB2 <- tabB[sapply(tabB, function(x) length(unique(x))>1)]
 
 ### Define columns which are not very informative.
 ```R
-tabAdrops <- c("colA1","colA2","colA3")
+tabAdrops <- c("colA1", "colA2", "colA3")
 tabBdrops <- c("colB1", "colB2")
 ```
 
 ### Delete not very informative columns.
 ```R
-tabA3 <- tabA2[,!(names(tabA2) %in% tabAdrops)]
-tabB3 <- tabB2[,!(names(tabB2) %in% tabBdrops)]
+tabA3 <- tabA2[, !(names(tabA2) %in% tabAdrops)]
+tabB3 <- tabB2[, !(names(tabB2) %in% tabBdrops)]
 ```
 
 ### Full join both tables on column "colA4"
@@ -33,16 +33,16 @@ tabBdane <- merge(x = tabA3, y = tabB3, by = "colA4", all = TRUE)
 
 ### Write output table as a csv with ";" as a separator. Use quote = FALSE to get rid of "" around each string.
 ```R
-write.csv2(tabBdane,<path_to_output_csv_file>,quote = FALSE,row.names = FALSE)
+write.csv2(tabBdane, <path_to_output_csv_file>,quote = FALSE, row.names = FALSE)
 ```
 
 ### Translate accented characters by chartr or by gsub function
 ```R
-mydata <- c("ą","ę")
-chartr("ąęć","aec",mydata)
-mydata2 <- chartr("ąćęłńóśźżĄĆĘŁŃÓŚŹŻ","acelnoszzACELNOSZZ",mydata)
-mydata3 <- gsub("ą","a",mydata3)
-sapply(mydata,gsub,pattern="ą",replacement="a")
+mydata <- c("ą", "ę")
+chartr("ąęć", "aec", mydata)
+mydata2 <- chartr("ąćęłńóśźżĄĆĘŁŃÓŚŹŻ", "acelnoszzACELNOSZZ", mydata)
+mydata3 <- gsub("ą", "a", mydata3)
+sapply(mydata, gsub, pattern="ą", replacement="a")
 ```
 
 ### Convert accented characters/diacritic signs to ASCII signs using stri_trans_general from stringi library
@@ -53,5 +53,5 @@ tabBdane2 <- as.data.frame(lapply(tabBdane, function(x) stri_trans_general(x,"la
 
 ### Save converted data to a csv file
 ```R
-write.csv2(tabBdane2,<path_to_output_csv_file>,quote = FALSE,row.names = FALSE)
+write.csv2(tabBdane2, <path_to_output_csv_file>, quote = FALSE, row.names = FALSE)
 ```
