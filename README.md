@@ -1,5 +1,33 @@
 # R-notes
 
+# Linear regression stuff
+```R
+library(lmtest)
+
+dataset <- read.csv("C:\\Users\\tjelinski\\Pobrane\\dataset.csv",header=T)
+
+y <- dataset$zmienna_zalezna
+x1 <- dataset$zmienna_niezalezna_1
+x2 <- dataset$zmienna_niezalezna_2
+multi.fit <- lm(y~x1+x2+x1:x2+I(x1^2)+I(x2^2), data=dataset)
+summary(multi.fit)
+
+
+ynew <- dataset$
+xnew <- dataset$
+newfit <- lm(ynew~xnew)
+res <- residuals(newfit)
+
+shapiro.test(res)
+gqtest(ynew ~ xnew)
+bgtest(ynew~xnew)
+bgtest(ynew~xnew,order=4)
+resettest(ynew~xnew, power =2, type="regressor")
+
+shapiro.test(rnorm(100,mean=5,sd=3))
+```
+
+
 #### Read csv files with `;` as a separator
 ```R
 tabA <- read.csv(file=<path_to_file_A>, head=TRUE, sep=";")
