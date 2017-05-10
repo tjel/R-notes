@@ -1,6 +1,6 @@
 # R-notes
 
-# Linear regression stuff
+#### Linear regression stuff
 ```R
 library(lmtest)
 
